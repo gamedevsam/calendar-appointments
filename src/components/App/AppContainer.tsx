@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { openAddReminder } from '../../redux/actions';
+import { AddReminderActions } from '../../redux';
 import App from './App';
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	onFabAddClick: () => dispatch(openAddReminder()),
+	onFabAddClick: () => dispatch(AddReminderActions.open()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

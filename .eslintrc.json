@@ -21,8 +21,9 @@
 		"eslint:recommended",
 		"plugin:react/recommended",
 		"plugin:prettier/recommended",
-		"plugin:@typescript-eslint/eslint-recommended",
-		"plugin:@typescript-eslint/recommended"
+		"plugin:immer-reducer/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/eslint-recommended"
 	],
 	"rules": {
 		"@typescript-eslint/explicit-function-return-type": "off",

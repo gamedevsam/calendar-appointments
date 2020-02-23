@@ -1,22 +1,15 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { closeAgenda } from '../../redux/actions';
+import { AgendaActions, CalendarAppState } from '../../redux';
 import AgendaDay from './AgendaDay';
 
-interface State {
-	agendaStatus: {
-		isOpen: boolean;
-		date: Date;
-	};
-}
-
-const mapStateToProps = (state: State) => ({
-	date: state.agendaStatus.date,
-	isOpen: state.agendaStatus.isOpen,
+const mapStateToProps = (state: CalendarAppState) => ({
+	date: state.agenda.date,
+	isOpen: state.agenda.isOpen,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	onClose: () => dispatch(closeAgenda()),
+	onClose: () => dispatch(AgendaActions.close()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AgendaDay);

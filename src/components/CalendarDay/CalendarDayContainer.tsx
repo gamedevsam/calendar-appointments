@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { openAgenda } from '../../redux/actions';
+import { AgendaActions } from '../../redux';
 import CalendarDay from './CalendarDay';
 
 interface Props {}
@@ -16,7 +16,7 @@ const mapStateToProps = (state: State, ownProps: Props) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	onDayClick: (date: Date) => dispatch(openAgenda(date)),
+	onDayClick: (date: Date) => dispatch(AgendaActions.open(date)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarDay);
