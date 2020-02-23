@@ -7,12 +7,12 @@ import { AgendaReducer } from './AgendaReducer';
 
 const initialState = {
 	...AgendaReducer.initialState,
-	...AddReminderReducer.initialState,
+	...AddReminderReducer.initialState
 };
 
 const reducer = composeReducers<Partial<CalendarAppState>>(
 	createReducerFunction(AgendaReducer),
-	createReducerFunction(AddReminderReducer),
+	createReducerFunction(AddReminderReducer)
 );
 
 export type CalendarAppState = typeof initialState;
@@ -22,5 +22,5 @@ export const AddReminderActions = createActionCreators(AddReminderReducer);
 export default createStore(
 	reducer,
 	initialState,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

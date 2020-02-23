@@ -10,13 +10,11 @@ const styles = () =>
 			width: '100%',
 			flexBasis: '50px',
 			justifyContent: 'space-evenly',
-			alignItems: 'center',
-		},
+			alignItems: 'center'
+		}
 	});
 
-interface Props extends WithStyles<typeof styles> {}
-
-const DaysRow = (props: Props) => (
+const DaysRow = (props: WithStyles<typeof styles>) => (
 	<div className={props.classes.daysRow}>
 		{daysArr.map((day, i) => (
 			<DayName key={i} day={day} />

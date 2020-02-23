@@ -12,8 +12,8 @@ const styles = () =>
 			flex: 1,
 			alignItems: 'center',
 			justifyContent: 'center',
-			width: '100%',
-		},
+			width: '100%'
+		}
 	});
 
 interface Props extends WithStyles<typeof styles> {

@@ -10,8 +10,8 @@ const styles = () =>
 			flexGrow: 1,
 			flexDirection: 'row',
 			flexWrap: 'wrap',
-			border: '1px solid lightgray',
-		},
+			border: '1px solid lightgray'
+		}
 	});
 
 interface Props extends WithStyles<typeof styles> {

@@ -3,20 +3,12 @@ import { Dispatch } from 'redux';
 import { AgendaActions } from '../../redux';
 import CalendarDay from './CalendarDay';
 
-interface Props {}
-
-interface State {}
-
-interface DateObj {
-	date: Date;
+interface DispatchProps {
+	onDayClick: (date: Date) => void;
 }
 
-const mapStateToProps = (state: State, ownProps: Props) => {
-	return { ...state, ...ownProps };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	onDayClick: (date: Date) => dispatch(AgendaActions.open(date)),
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+	onDayClick: (date: Date) => dispatch(AgendaActions.open(date))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarDay);
+export default connect(null, mapDispatchToProps)(CalendarDay);

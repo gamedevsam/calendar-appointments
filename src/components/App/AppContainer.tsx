@@ -3,10 +3,16 @@ import { Dispatch } from 'redux';
 import { AddReminderActions } from '../../redux';
 import App from './App';
 
-const mapStateToProps = () => ({});
+export interface StateProps {}
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	onFabAddClick: () => dispatch(AddReminderActions.open()),
+export interface DispatchProps {
+	onFabAddClick: () => void;
+}
+
+const mapStateToProps = (): StateProps => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+	onFabAddClick: () => dispatch(AddReminderActions.open())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

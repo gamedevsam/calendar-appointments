@@ -1,12 +1,20 @@
 import { ImmerReducer } from 'immer-reducer';
+import { Immutable } from '../types/immutable';
 
-export class AgendaReducer extends ImmerReducer<typeof AgendaReducer.initialState> {
-	static readonly initialState = Object.freeze({
-		agenda: Object.freeze({
+type State = Immutable<{
+	agenda: {
+		isOpen: boolean;
+		date: Date | null;
+	};
+}>;
+
+export class AgendaReducer extends ImmerReducer<State> {
+	static readonly initialState: State = {
+		agenda: {
 			isOpen: false,
-			date: null,
-		}),
-	});
+			date: null
+		}
+	};
 
 	open(date: Date) {
 		this.draftState.agenda.date = date;
