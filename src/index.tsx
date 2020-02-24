@@ -1,3 +1,5 @@
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -9,7 +11,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	<Provider store={store as any}>
-		<AppContainer />
+		<MuiPickersUtilsProvider utils={DateFnsUtils}>
+			<AppContainer />
+		</MuiPickersUtilsProvider>
 	</Provider>,
 	document.getElementById('root')
 );

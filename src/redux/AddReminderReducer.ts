@@ -1,30 +1,57 @@
 import { ImmerReducer } from 'immer-reducer';
 import { Immutable } from '../types/immutable';
+import { limitText } from '../utils/stringUtils';
 
-type State = Immutable<{
+export type State = Immutable<{
 	addReminder: {
 		isOpen: boolean;
-		selectedColor?: number;
+		madeChanges: boolean;
+		date: Date | null;
+		text?: string;
+		color?: string;
 	};
 }>;
 
 export class AddReminderReducer extends ImmerReducer<State> {
 	static readonly initialState: State = {
 		addReminder: {
-			isOpen: false
+			isOpen: false,
+			madeChanges: false,
+			date: null
 		}
 	};
 
+	private myState = this.draftState.addReminder;
+
 	open() {
-		this.draftState.addReminder.isOpen = true;
+		this.myState.isOpen = true;
+	}
+
+	tryClose() {
+		if (!this.myState.madeChanges || window.confirm('Continue without saving?')) {
+			this.close();
+		}
 	}
 
 	close() {
-		this.draftState.addReminder.selectedColor = undefined;
-		this.draftState.addReminder.isOpen = false;
+		this.myState.color = undefined;
+		this.myState.text = undefined;
+		this.myState.madeChanges = false;
+		this.myState.isOpen = false;
 	}
 
-	setSelectedColor(color: number) {
-		this.draftState.addReminder.selectedColor = color;
+	setDate(date: Date | null) {
+		this.myState.date = date;
+		this.myState.madeChanges = true;
+	}
+
+	setText(text: string) {
+		this.myState.text = limitText(text, 30);
+		this.myState.madeChanges = true;
+	}
+
+	setColor(color: string) {
+		this.myState.color = color;
+		this.myState.madeChanges = true;
 	}
 }

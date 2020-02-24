@@ -6,7 +6,7 @@ import AgendaDay from './AgendaDay';
 interface OwnProps {}
 
 export interface StateProps {
-	date: Date;
+	date: Date | null;
 	isOpen: boolean;
 }
 
