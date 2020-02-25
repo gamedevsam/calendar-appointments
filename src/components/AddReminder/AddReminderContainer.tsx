@@ -2,25 +2,26 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Reminder } from '../../models/Reminder';
 import { AddReminderActions, AgendaActions, CalendarAppState } from '../../redux';
+import { Immutable } from '../../types/immutable';
 import AddReminder from './AddReminder';
 
 interface OwnProps {}
 
-export interface StateProps {
+export type StateProps = Immutable<{
 	isOpen: boolean;
 	date: Date | null;
 	text?: string;
 	color?: string;
-}
+}>;
 
-export interface DispatchProps {
+export type DispatchProps = Immutable<{
 	close: () => void;
 	tryClose: () => void;
 	setDate: (date: Date | null) => void;
 	setText: (text: string) => void;
 	setColor: (color: string) => void;
 	addReminder: (reminder: Reminder) => void;
-}
+}>;
 
 const mapStateToProps = (state: CalendarAppState, _ownProps: OwnProps): StateProps => ({
 	isOpen: state.addReminder.isOpen,

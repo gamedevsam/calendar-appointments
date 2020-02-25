@@ -1,12 +1,12 @@
+import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import * as dateFns from 'date-fns';
+import { format } from 'date-fns';
 import React from 'react';
 import { DispatchProps, StateProps } from './AgendaDayContainer';
 
@@ -16,24 +16,21 @@ const styles = () =>
 			minHeight: '250px',
 			marginTop: '10px'
 		},
+		list: {
+			width: '100%'
+		},
 		closeButton: {
 			position: 'absolute',
 			right: '10px',
 			top: '10px'
-		},
-		toolbarButtonHidden: {
-			visibility: 'hidden'
-		},
-		toolbarButtonVisible: {
-			visibility: 'visible'
 		}
 	});
 
 type Props = WithStyles<typeof styles> & StateProps & DispatchProps;
 
 const AgendaDay = (props: Props) => {
-	const { classes, date, isOpen, onClose } = props;
-	const dateTitle = date ? dateFns.format(date, 'LLLL do, yyyy') : 'Closing';
+	const { classes, date, reminders, isOpen, onClose } = props;
+	const dateTitle = date ? format(date, 'LLLL do, yyyy') : 'Closing';
 
 	return (
 		<Dialog open={isOpen} onClose={onClose} aria-labelledby="form-dialog-title" fullWidth={true} maxWidth="md">
@@ -45,7 +42,25 @@ const AgendaDay = (props: Props) => {
 			</DialogTitle>
 			<Divider light />
 			<DialogContent className={classes.remindersContainer}>
-				<Typography>Use this space to list the reminders.</Typography>
+				<List dense className={classes.list}>
+					{reminders &&
+						reminders.map((reminder) => (
+							<ListItem key={reminder.date.getDate()}>
+								<ListItemAvatar>
+									<div
+										title={reminder.color}
+										style={{
+											height: '32px',
+											width: '32px',
+											borderRadius: '50%',
+											backgroundColor: reminder.color
+										}}
+									/>
+								</ListItemAvatar>
+								<ListItemText primary={reminder.text} secondary={format(reminder.date, 'p')} />
+							</ListItem>
+						))}
+				</List>
 			</DialogContent>
 		</Dialog>
 	);

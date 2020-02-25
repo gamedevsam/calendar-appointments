@@ -24,7 +24,7 @@ interface Props extends WithStyles<typeof styles> {
 const MonthContainer = (props: Props) => (
 	<div className={props.classes.monthContainer}>
 		{props.calendarCells.map((cell, i) => (
-			<CalendarDayContainer key={i} calendarDate={props.date} myDate={cell.date} />
+			<CalendarDayContainer key={i} calendarDate={props.date} cellDate={cell.date} />
 		))}
 	</div>
 );
