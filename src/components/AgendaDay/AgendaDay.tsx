@@ -8,31 +8,28 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import * as dateFns from 'date-fns';
 import React from 'react';
+import { DispatchProps, OwnProps, StateProps } from './AgendaDayContainer';
 
 const styles = () =>
 	createStyles({
 		remindersContainer: {
 			minHeight: '250px',
-			marginTop: '10px',
+			marginTop: '10px'
 		},
 		closeButton: {
 			position: 'absolute',
 			right: '10px',
-			top: '10px',
+			top: '10px'
 		},
 		toolbarButtonHidden: {
-			visibility: 'hidden',
+			visibility: 'hidden'
 		},
 		toolbarButtonVisible: {
-			visibility: 'visible',
-		},
+			visibility: 'visible'
+		}
 	});
 
-interface Props extends WithStyles<typeof styles> {
-	isOpen: boolean;
-	date: Date | null;
-	onClose: () => void;
-}
+type Props = WithStyles<typeof styles> & OwnProps & StateProps & DispatchProps;
 
 const AgendaDay = (props: Props) => {
 	const { classes, date, isOpen, onClose } = props;

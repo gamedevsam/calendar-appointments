@@ -10,8 +10,8 @@ const styles = () =>
 			width: '100%',
 			flexBasis: '50px',
 			justifyContent: 'space-evenly',
-			alignItems: 'center',
-		},
+			alignItems: 'center'
+		}
 	});
 
 interface Props extends WithStyles<typeof styles> {}

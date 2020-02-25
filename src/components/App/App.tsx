@@ -13,6 +13,7 @@ import AddReminderContainer from '../AddReminder/AddReminderContainer';
 import AgendaDayContainer from '../AgendaDay/AgendaDayContainer';
 import CalendarGrid from '../CalendarGrid';
 import './App.css';
+import { DispatchProps, OwnProps, StateProps } from './AppContainer';
 
 const styles = () =>
 	createStyles({
@@ -20,7 +21,7 @@ const styles = () =>
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
-			width: '100%',
+			width: '100%'
 		},
 		calendar: {
 			display: 'flex',
@@ -30,14 +31,14 @@ const styles = () =>
 			padding: '10px',
 			margin: '25px',
 			width: '100%',
-			height: '90%',
+			height: '90%'
 		},
 		calendarHeader: {
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'space-between',
 			height: '100px',
-			width: '100%',
+			width: '100%'
 		},
 		fabAdd: {
 			position: 'absolute',
@@ -46,14 +47,12 @@ const styles = () =>
 			color: '#FFF',
 			backgroundColor: green[600],
 			'&:hover': {
-				backgroundColor: green[800],
-			},
-		},
+				backgroundColor: green[800]
+			}
+		}
 	});
 
-interface Props extends WithStyles<typeof styles> {
-	onFabAddClick: () => void;
-}
+type Props = WithStyles<typeof styles> & OwnProps & StateProps & DispatchProps;
 
 interface State {
 	date: Date;
@@ -61,7 +60,7 @@ interface State {
 
 class App extends Component<Props, State> {
 	state: State = {
-		date: new Date(),
+		date: new Date()
 	};
 
 	// arrow functions to skip binding in constructor

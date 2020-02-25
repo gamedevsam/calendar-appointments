@@ -7,6 +7,7 @@ import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
+import { DispatchProps, OwnProps, StateProps } from './AddReminderContainer';
 
 const styles = () =>
 	createStyles({
@@ -14,23 +15,20 @@ const styles = () =>
 			minHeight: '250px',
 			marginTop: '10px',
 			display: 'flex',
-			flexDirection: 'column',
+			flexDirection: 'column'
 		},
 		colorContainer: {
 			display: 'flex',
-			flexDirection: 'column',
+			flexDirection: 'column'
 		},
 		closeButton: {
 			position: 'absolute',
 			right: '10px',
-			top: '10px',
-		},
+			top: '10px'
+		}
 	});
 
-interface Props extends WithStyles<typeof styles> {
-	isOpen: boolean;
-	onClose: () => void;
-}
+type Props = WithStyles<typeof styles> & OwnProps & StateProps & DispatchProps;
 
 const AddReminder = (props: Props) => {
 	const { classes, isOpen, onClose } = props;

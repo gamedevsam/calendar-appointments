@@ -1,17 +1,26 @@
 import { ImmerReducer } from 'immer-reducer';
+import { Immutable } from '../types/immutable';
 
-export class AddReminderReducer extends ImmerReducer<typeof AddReminderReducer.initialState> {
-	static readonly initialState = Object.freeze({
-		addReminder: Object.freeze({
-			isOpen: false,
-		}),
-	});
+export type State = Immutable<{
+	addReminder: {
+		isOpen: boolean;
+	};
+}>;
+
+export class AddReminderReducer extends ImmerReducer<State> {
+	static readonly initialState: State = {
+		addReminder: {
+			isOpen: false
+		}
+	};
+
+	private myState = this.draftState.addReminder;
 
 	open() {
-		this.draftState.addReminder.isOpen = true;
+		this.myState.isOpen = true;
 	}
 
 	close() {
-		this.draftState.addReminder.isOpen = false;
+		this.myState.isOpen = false;
 	}
 }

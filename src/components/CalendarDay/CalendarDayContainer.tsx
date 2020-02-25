@@ -1,22 +1,26 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { AgendaActions } from '../../redux';
+import { Immutable } from '../../types/immutable';
 import CalendarDay from './CalendarDay';
 
-interface Props {}
+export type OwnProps = Immutable<{
+	cellDate: Date;
+	calendarDate: Date;
+}>;
 
-interface State {}
+export type StateProps = Immutable<{}>;
 
-interface DateObj {
-	date: Date;
-}
+export type DispatchProps = Immutable<{
+	onDayClick: (date: Date) => void;
+}>;
 
-const mapStateToProps = (state: State, ownProps: Props) => {
+const mapStateToProps = (state: StateProps, ownProps: OwnProps): StateProps => {
 	return { ...state, ...ownProps };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	onDayClick: (date: Date) => dispatch(AgendaActions.open(date)),
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+	onDayClick: (date: Date) => dispatch(AgendaActions.open(date))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarDay);

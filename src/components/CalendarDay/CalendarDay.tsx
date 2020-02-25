@@ -3,6 +3,7 @@ import deepPurple from '@material-ui/core/colors/deepPurple';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import { getDate, isSameDay, isSameMonth } from 'date-fns';
 import React, { useState } from 'react';
+import { DispatchProps, OwnProps, StateProps } from './CalendarDayContainer';
 
 const styles = () =>
 	createStyles({
@@ -11,7 +12,7 @@ const styles = () =>
 			flex: '1 0 13%',
 			flexDirection: 'column',
 			border: '1px solid lightgray',
-			cursor: 'pointer',
+			cursor: 'pointer'
 		},
 		dayCellOutsideMonth: {
 			display: 'flex',
@@ -19,7 +20,7 @@ const styles = () =>
 			flexDirection: 'column',
 			border: '1px solid lightgray',
 			backgroundColor: 'rgba( 211, 211, 211, 0.4 )',
-			cursor: 'pointer',
+			cursor: 'pointer'
 		},
 		dateNumber: {
 			margin: 5,
@@ -27,7 +28,7 @@ const styles = () =>
 			width: '28px',
 			fontSize: '0.85rem',
 			color: '#000',
-			backgroundColor: 'transparent',
+			backgroundColor: 'transparent'
 		},
 		todayAvatar: {
 			margin: 5,
@@ -35,7 +36,7 @@ const styles = () =>
 			width: '28px',
 			fontSize: '0.85rem',
 			color: '#fff',
-			backgroundColor: deepPurple[400],
+			backgroundColor: deepPurple[400]
 		},
 		focusedAvatar: {
 			margin: 5,
@@ -43,7 +44,7 @@ const styles = () =>
 			width: '28px',
 			fontSize: '0.85rem',
 			color: '#000',
-			backgroundColor: '#f1f1f1',
+			backgroundColor: '#f1f1f1'
 		},
 		focusedTodayAvatar: {
 			margin: 5,
@@ -51,24 +52,20 @@ const styles = () =>
 			width: '28px',
 			fontSize: '0.85rem',
 			color: '#fff',
-			backgroundColor: deepPurple[800],
+			backgroundColor: deepPurple[800]
 		},
 		remindersContainer: {
-			height: '100%',
-		},
+			height: '100%'
+		}
 	});
 
-interface Props extends WithStyles<typeof styles> {
-	myDate: Date;
-	calendarDate: Date;
-	onDayClick: (date: Date) => void;
-}
+type Props = WithStyles<typeof styles> & OwnProps & StateProps & DispatchProps;
 
 const CalendarDay = (props: Props) => {
-	const { classes, myDate, calendarDate, onDayClick } = props;
+	const { classes, cellDate, calendarDate, onDayClick } = props;
 	const [focused, setFocused] = useState(false);
 
-	const isToday = isSameDay(myDate, new Date());
+	const isToday = isSameDay(cellDate, new Date());
 	const avatarClass =
 		isToday && focused
 			? classes.focusedTodayAvatar
@@ -82,10 +79,10 @@ const CalendarDay = (props: Props) => {
 		<div
 			onMouseOver={() => setFocused(true)}
 			onMouseOut={() => setFocused(false)}
-			onClick={() => onDayClick(myDate)}
-			className={isSameMonth(myDate, calendarDate) ? classes.dayCell : classes.dayCellOutsideMonth}
+			onClick={() => onDayClick(cellDate)}
+			className={isSameMonth(cellDate, calendarDate) ? classes.dayCell : classes.dayCellOutsideMonth}
 		>
-			<Avatar className={avatarClass}>{getDate(myDate)}</Avatar>
+			<Avatar className={avatarClass}>{getDate(cellDate)}</Avatar>
 			<div className={classes.remindersContainer}>{/* reminders go here */}</div>
 		</div>
 	);
