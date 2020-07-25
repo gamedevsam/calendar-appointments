@@ -14,7 +14,10 @@ export const AgendaActions = createActionCreators(AgendaReducer);
 export const AddReminderActions = createActionCreators(AddReminderReducer);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const reducer = composeReducers<any>(createReducerFunction(AgendaReducer), createReducerFunction(AddReminderReducer));
+const reducer = composeReducers<any>(
+	createReducerFunction(AgendaReducer),
+	createReducerFunction(AddReminderReducer)
+);
 
 const initialState = {
 	...AgendaReducer.initialState,
@@ -24,5 +27,5 @@ const initialState = {
 export default createStore(
 	reducer,
 	initialState,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	window.__REDUX_DEVTOOLS_EXTENSION__?.()
 );

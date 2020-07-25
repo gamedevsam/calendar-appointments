@@ -21,37 +21,37 @@ export class AddReminderReducer extends ImmerReducer<State> {
 		}
 	};
 
-	private myState = this.draftState.addReminder;
+	#state = this.draftState.addReminder;
 
 	open() {
-		this.myState.isOpen = true;
+		this.#state.isOpen = true;
 	}
 
 	tryClose() {
-		if (!this.myState.madeChanges || window.confirm('Continue without saving?')) {
+		if (!this.#state.madeChanges || window.confirm('Continue without saving?')) {
 			this.close();
 		}
 	}
 
 	close() {
-		this.myState.color = undefined;
-		this.myState.text = undefined;
-		this.myState.madeChanges = false;
-		this.myState.isOpen = false;
+		this.#state.color = undefined;
+		this.#state.text = undefined;
+		this.#state.madeChanges = false;
+		this.#state.isOpen = false;
 	}
 
 	setDate(date: Date | null) {
-		this.myState.date = date;
-		this.myState.madeChanges = true;
+		this.#state.date = date;
+		this.#state.madeChanges = true;
 	}
 
 	setText(text: string) {
-		this.myState.text = limitText(text, 30);
-		this.myState.madeChanges = true;
+		this.#state.text = limitText(text, 30);
+		this.#state.madeChanges = true;
 	}
 
 	setColor(color: string) {
-		this.myState.color = color;
-		this.myState.madeChanges = true;
+		this.#state.color = color;
+		this.#state.madeChanges = true;
 	}
 }

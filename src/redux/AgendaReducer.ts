@@ -21,25 +21,25 @@ export class AgendaReducer extends ImmerReducer<State> {
 		}
 	};
 
-	private myState = this.draftState.agenda;
+	#state = this.draftState.agenda;
 
 	open(date: Date) {
-		this.myState.date = date;
-		this.myState.isOpen = true;
+		this.#state.date = date;
+		this.#state.isOpen = true;
 	}
 
 	close() {
-		this.myState.date = null;
-		this.myState.isOpen = false;
+		this.#state.date = null;
+		this.#state.isOpen = false;
 	}
 
 	addReminder(reminder: Reminder) {
 		const formattedDay = format(reminder.date, 'P');
-		if (!this.myState.reminders[formattedDay]) {
-			this.myState.reminders[formattedDay] = [reminder];
+		if (!this.#state.reminders[formattedDay]) {
+			this.#state.reminders[formattedDay] = [reminder];
 		} else {
-			this.myState.reminders[formattedDay].push(reminder);
-			this.myState.reminders[formattedDay].sort((a, b) => b.date.getTime() - a.date.getTime());
+			this.#state.reminders[formattedDay].push(reminder);
+			this.#state.reminders[formattedDay].sort((a, b) => b.date.getTime() - a.date.getTime());
 		}
 	}
 }
