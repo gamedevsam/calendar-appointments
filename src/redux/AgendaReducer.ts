@@ -16,15 +16,15 @@ export class AgendaReducer extends ImmerReducer<State> {
 		}
 	};
 
-	private myState = this.draftState.agenda;
+	#state = this.draftState.agenda;
 
 	open(date: Date) {
-		this.myState.date = date;
-		this.myState.isOpen = true;
+		this.#state.date = date;
+		this.#state.isOpen = true;
 	}
 
 	close() {
-		this.myState.date = null;
-		this.myState.isOpen = false;
+		this.#state.date = null;
+		this.#state.isOpen = false;
 	}
 }

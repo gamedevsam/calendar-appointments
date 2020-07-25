@@ -14,13 +14,13 @@ export class AddReminderReducer extends ImmerReducer<State> {
 		}
 	};
 
-	private myState = this.draftState.addReminder;
+	#state = this.draftState.addReminder;
 
 	open() {
-		this.myState.isOpen = true;
+		this.#state.isOpen = true;
 	}
 
 	close() {
-		this.myState.isOpen = false;
+		this.#state.isOpen = false;
 	}
 }
