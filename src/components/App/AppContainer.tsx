@@ -1,12 +1,21 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { openAddReminder } from '../../redux/actions';
+import { AddReminderActions, CalendarAppState } from '../../redux';
+import { Immutable } from '../../types/immutable';
 import App from './App';
 
-const mapStateToProps = () => ({});
+export type OwnProps = Immutable<{}>;
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	onFabAddClick: () => dispatch(openAddReminder()),
+export type StateProps = Immutable<{}>;
+
+export type DispatchProps = Immutable<{
+	onFabAddClick: () => void;
+}>;
+
+const mapStateToProps = (_state: CalendarAppState, _ownProps: OwnProps): StateProps => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+	onFabAddClick: () => dispatch(AddReminderActions.open())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

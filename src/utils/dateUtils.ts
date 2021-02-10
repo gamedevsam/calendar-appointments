@@ -13,7 +13,7 @@ export const monthsArr = [
 	'September',
 	'October',
 	'November',
-	'December',
+	'December'
 ];
 
 export function getMonthCells(currentDate: Date) {
@@ -39,19 +39,19 @@ export function getMonthCells(currentDate: Date) {
 	// push into the arrays
 	for (let i = firstDayOfMonth; i > 0; i--) {
 		prevMonthArr.push({
-			date: subDays(firstOfMonth, i),
+			date: subDays(firstOfMonth, i)
 		});
 	}
 
 	for (let i = 0; i < daysInMonth; i++) {
 		monthArr.push({
-			date: addDays(firstOfMonth, i),
+			date: addDays(firstOfMonth, i)
 		});
 	}
 
 	for (let i = 0; i < daysAfter; i++) {
 		nextMonthArr.push({
-			date: addDays(lastOfMonth, i + 1),
+			date: addDays(lastOfMonth, i + 1)
 		});
 	}
 
